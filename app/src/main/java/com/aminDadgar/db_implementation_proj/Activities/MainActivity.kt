@@ -1,4 +1,4 @@
-package com.aminDadgar.db_implementation_proj
+package com.aminDadgar.db_implementation_proj.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,12 +10,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.aminDadgar.db_implementation_proj.R
+import com.aminDadgar.db_implementation_proj.Utils.Cost
 import com.aminDadgar.db_implementation_proj.model.datamodel
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    private var TABLE_COUNT = -1
+    var TABLE_COUNT = -1
     var TableNames : Array<Char> = arrayOf('R','S','T','U','Z')
     private var FirstAttribute = -1
     private var SecondAttribute = -1
@@ -74,16 +75,23 @@ class MainActivity : AppCompatActivity() {
                             TupleCount
                         )
                     )
-                    Log.d("Table Added", Data[index].TABLE_NAME.toString())
+//                    Log.d("Table Added", Data[index].TABLE_NAME.toString())
+                    Log.d("table",index.toString())
                 }
-
             }
 
 
                 animation.setAnimationListener(object :Animation.AnimationListener {
                     override fun onAnimationRepeat(animation: Animation?) {
-                        if (index < 4)
-                            table_name.text = "Table: " + TableNames[index + 1].toString()
+                        if (index < 4) {
+                                table_name.text = "Table: " + TableNames[index + 1].toString()
+                            Log.d("tablename",TableNames[index + 1].toString())
+                        }
+                        else {
+                            button.text = "Clculate"
+                            Cost().twoBytwo(Data)
+                        }
+//                        Cost().twoBytwo(Data)
                     }
 
                     override fun onAnimationEnd(animation: Animation?) {}
