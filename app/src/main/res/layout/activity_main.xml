@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+
+    <TextView
+        android:text="Table"
+        android:textSize="16sp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:textColor="@android:color/black"
+        android:layout_width="200dp"
+        android:layout_margin="15dp"
+        android:layout_height="50dp"
+        android:id="@+id/table_name"/>
+    <LinearLayout
+        android:layout_margin="15dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+            android:id="@+id/text_field_boxes11"
+            android:layout_width="100dp"
+            android:layout_height="55dp"
+            app:labelText="attribute"
+            android:layout_marginEnd="5dp"
+            >
+
+            <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                android:id="@+id/attr11"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+        <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+            android:id="@+id/text_field_boxes1"
+            android:layout_width="200dp"
+            android:layout_height="55dp"
+            app:labelText="V(table_name,attribute)"
+            >
+
+            <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                android:id="@+id/attr1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="15dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+            android:id="@+id/text_field_boxes21"
+            android:layout_marginEnd="5dp"
+            android:layout_width="100dp"
+            app:labelText="attribute"
+            android:layout_height="55dp"
+            >
+
+            <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                android:id="@+id/attr21"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+        <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+            android:id="@+id/text_field_boxes2"
+            android:layout_width="200dp"
+            android:layout_height="55dp"
+            app:labelText="V(table_name,attribute)"
+            >
+
+            <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                android:id="@+id/attr2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="15dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+<!--        <studio.carbonylgroup.textfieldboxes.TextFieldBoxes-->
+<!--            android:id="@+id/text_field_boxes31"-->
+<!--            android:layout_width="55dp"-->
+<!--            android:layout_height="55dp"-->
+<!--            android:layout_marginEnd="5dp"-->
+<!--            >-->
+
+<!--            <studio.carbonylgroup.textfieldboxes.ExtendedEditText-->
+<!--                android:id="@+id/attr31"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                />-->
+
+<!--        </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>-->
+        <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+            android:id="@+id/text_field_boxes3"
+            android:layout_width="200dp"
+            android:layout_height="55dp"
+            app:labelText="tuple count"
+            >
+
+            <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                android:id="@+id/attr3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit data"
+        android:padding="8dp"
+        android:textColor="@android:color/white"
+        android:id="@+id/button"
+        android:background="@drawable/round_corner_shape"
+        android:layout_gravity="center_horizontal"
+        />
+
+
+</LinearLayout>
