@@ -75,8 +75,7 @@ class MainActivity : AppCompatActivity() {
                             TupleCount
                         )
                     )
-//                    Log.d("Table Added", Data[index].TABLE_NAME.toString())
-                    Log.d("table",index.toString())
+//                    Log.d("table",index.toString())
                 }
             }
 
@@ -89,9 +88,9 @@ class MainActivity : AppCompatActivity() {
                         }
                         else {
                             button.text = "Clculate"
-                            Cost().twoBytwo(Data)
+                            val bestTwoJoin = Cost().twoBytwo(Data)
+                            Cost().threeBythree(Data,bestTwoJoin)
                         }
-//                        Cost().twoBytwo(Data)
                     }
 
                     override fun onAnimationEnd(animation: Animation?) {}
