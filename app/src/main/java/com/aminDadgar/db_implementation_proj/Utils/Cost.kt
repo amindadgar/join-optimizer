@@ -10,7 +10,6 @@ class Cost {
     fun twoBytwo(Data :MutableList<datamodel>): CoupleData {  // this function is used to compare and find tables common attribute
         var Best :CoupleData?= null //The best two attribute join
 
-
         Log.d("function_twoBytwo","started !")
 
         var temp: datamodel?
@@ -53,6 +52,9 @@ class Cost {
                         result = ( temp.tupleCount * temp2.tupleCount ) / temp2.secondAttribute
                         coupleData.add(CoupleData(temp,temp2,result))
                     }
+                }else {
+                    result = ( temp.tupleCount * temp2.tupleCount )
+                    coupleData.add(CoupleData(temp,temp2,result))
                 }
             }
         }
@@ -207,16 +209,17 @@ class Cost {
                     }
                 }
             }
-            Application().ThreeJoinList(tripleData)
-            var Best:TripleData?= null
-            var mtemp:Long = 99999999
-            Log.d("Three join finished !",tripleData.size.toString())
-            tripleData.forEach {  // find the best join order
-                Log.d("table","${it.table1} ${it.table2} ${it.table3}  ${it.JoinResult}")
-                if (mtemp > it.JoinResult){
-                    mtemp = it.JoinResult.toLong()
-                    Best = it
-                }
+        }
+        Application().ThreeJoinList(tripleData)
+
+        var Best:TripleData?= null
+        var mtemp:Long = 99999999
+        Log.d("Three join finished !",tripleData.size.toString())
+        tripleData.forEach {  // find the best join order
+            Log.d("table","${it.table1} ${it.table2} ${it.table3}  ${it.JoinResult}")
+            if (mtemp > it.JoinResult){
+                mtemp = it.JoinResult.toLong()
+                Best = it
             }
         }
     }
