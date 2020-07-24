@@ -30,9 +30,23 @@ class MainActivity : AppCompatActivity() {
 
         table_name.text = "Table: "+TableNames[index + 1].toString()
         alertDialog()
+
         val Data :MutableList<datamodel> = mutableListOf()
 
+        Data.add(datamodel('R','a',100,'b',50,1000))
+        Data.add(datamodel('S','b',200,'c',500,2000))
+        Data.add(datamodel('T','c',50,'d',20,2000))
+        Data.add(datamodel('U','d',500,'e',100,2000))
+        Data.add(datamodel('Z','a',50,'e',200,1000))
+
+
         button.setOnClickListener {
+            val Cost = Cost()
+
+            val bestTwoJoin = Cost.twoBytwo(Data)
+            val bestThreeJoin = Cost.threeBythree(Data,bestTwoJoin)
+            val bestFourJoin = Cost.fourJoin(Data,bestThreeJoin)
+            Cost.FiveJoin(Data,bestFourJoin)
 
             val animation = AlphaAnimation(1.0f,0.0f)  //for animating TextView
             animation.repeatMode = Animation.REVERSE
@@ -40,15 +54,17 @@ class MainActivity : AppCompatActivity() {
             animation.duration = 200
 
 
-
+/*
             var inputError = false
             try {
+
                 Attr11 = attr11.text.toString()[0]
                 FirstAttribute = attr1.text.toString().toInt()
                 SecondAttribute = attr2.text.toString().toInt()
                 Attr12 = attr21.text.toString()[0]
                 TupleCount = attr3.text.toString().toInt()
                 if (Attr11.isDigit() || Attr12.isDigit()) throw IllegalArgumentException("Data is not Character")
+
             }catch (ex:ArrayIndexOutOfBoundsException){
                 Toast.makeText(
                     this, "Table Limit Reached !\nNo More Table Available"
@@ -78,19 +94,21 @@ class MainActivity : AppCompatActivity() {
 //                    Log.d("table",index.toString())
                 }
             }
-
-
+*/
+//                val Cost = Cost()
                 animation.setAnimationListener(object :Animation.AnimationListener {
                     override fun onAnimationRepeat(animation: Animation?) {
-                        if (index < 4) {
+                     /*   if (index < 4) {
                                 table_name.text = "Table: " + TableNames[index + 1].toString()
                             Log.d("tablename",TableNames[index + 1].toString())
-                        }
-                        else {
+                        } */
+//                        else {
                             button.text = "Clculate"
-                            val bestTwoJoin = Cost().twoBytwo(Data)
-                            Cost().threeBythree(Data,bestTwoJoin)
-                        }
+//                            val bestTwoJoin = Cost.twoBytwo(Data)
+//                            val bestThreeJoin = Cost.threeBythree(Data,bestTwoJoin)
+//                            val bestFourJoin = Cost.fourJoin(Data,bestThreeJoin)
+//                            Cost.FiveJoin(Data,bestFourJoin)
+//                        }
                     }
 
                     override fun onAnimationEnd(animation: Animation?) {}
