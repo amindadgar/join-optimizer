@@ -1,19 +1,27 @@
 package com.aminDadgar.db_implementation_proj.Utils
 
 import android.util.Log
-import com.aminDadgar.db_implementation_proj.Application
 import com.aminDadgar.db_implementation_proj.model.*
 
 class Cost {
+    var Best2 :CoupleData?= null //The best two attribute join
+    var Best3:TripleData?= null
+    var Best4:Quadruple?= null
+    var Best5:Quintuple?= null
+
+    val coupleData:MutableList<CoupleData> = mutableListOf()
+    val tripleData= mutableListOf<TripleData>()
+    val quadData = mutableListOf<Quadruple>()
+    val quintuple = mutableListOf<Quintuple>()
+
+
     fun twoBytwo(Data :MutableList<datamodel>): CoupleData {  // this function is used to compare and find tables common attribute
-        var Best :CoupleData?= null //The best two attribute join
 
         Log.d("function_twoBytwo","started !")
 
         var temp: datamodel?
         var temp2: datamodel?
         var result = -1
-        val coupleData:MutableList<CoupleData> = mutableListOf()
         for (i in 0..4){
             temp = Data[i]
             for (j in i+1 ..4){
@@ -60,26 +68,23 @@ class Cost {
         coupleData.forEach {
                 if (mtemp > it.JoinResult){  // find the best join order
                     mtemp = it.JoinResult.toLong()
-                    Best = it
+                    Best2 = it
                 }
         }
-        Application().BestTwoJoin(Best!!)// save the best two attribute join
-        Application().TwoJoinList(coupleData)  //save all two attribute joins
-        Log.d("first","${Best!!.JoinResult}  ${Best!!.table1.TABLE_NAME}  ${Best!!.table2.TABLE_NAME}")
+
+        Log.d("first","${Best2!!.JoinResult}  ${Best2!!.table1.TABLE_NAME}  ${Best2!!.table2.TABLE_NAME}")
         Log.d("function_twoBytwo","ended !")
 
-        Log.d("Best Two","${Best!!.table1}  ${Best!!.table2} ")
+        Log.d("Best Two","${Best2!!.table1}  ${Best2!!.table2} ")
 
-        return Best!!
+        return Best2!!
     }
 
 
 
 
     fun threeBythree(Data :MutableList<datamodel>,BestTwoByTwo:CoupleData):TripleData{
-//        val BestTwoByTwo:CoupleData? = Application().GetBestTwoJoin()
         var result = -1
-        val tripleData= mutableListOf<TripleData>()
 
         for (i in 0..4){
             if (BestTwoByTwo.table1.TABLE_NAME != Data[i].TABLE_NAME
@@ -211,26 +216,23 @@ class Cost {
                 }
             }
         }
-        Application().ThreeJoinList(tripleData)
 
-        var Best:TripleData?= null
         var mtemp:Long = 99999999
         Log.d("Three join finished !",tripleData.size.toString())
         tripleData.forEach {  // find the best join order
             Log.d("table","${it.table1} ${it.table2} ${it.table3}  ${it.JoinResult}")
             if (mtemp > it.JoinResult){
                 mtemp = it.JoinResult.toLong()
-                Best = it
+                Best3 = it
             }
         }
 
-        Log.d("Best Three","${Best!!.table1}  ${Best!!.table2}  ${Best!!.table3} ")
+        Log.d("Best Three","${Best3!!.table1}  ${Best3!!.table2}  ${Best3!!.table3} ")
 
-        return Best!!
+        return Best3!!
     }
     fun fourJoin(Data: MutableList<datamodel>, BestThreeJoin: TripleData):Quadruple{
 
-        val quadData = mutableListOf<Quadruple>()
         var result = -1
         for (i in 0..4){
             if (BestThreeJoin.table1.TABLE_NAME != Data[i].TABLE_NAME &&
@@ -376,23 +378,21 @@ class Cost {
                 }
             }
         }
-        var Best:Quadruple?= null
         var mtemp:Long = 99999999
         Log.d("Four join finished !",quadData.size.toString())
         quadData.forEach {  // find the best join order
             Log.d("table","${it.table1} ${it.table2} ${it.table3} ${it.table4} ${it.JoinResult}")
             if (mtemp > it.JoinResult){
                 mtemp = it.JoinResult.toLong()
-                Best = it
+                Best4 = it
             }
         }
-        Log.d("Best Four","${Best!!.table1}  ${Best!!.table2}  ${Best!!.table3}  ${Best!!.table4}")
+        Log.d("Best Four","${Best4!!.table1}  ${Best4!!.table2}  ${Best4!!.table3}  ${Best4!!.table4}")
 
 
-        return Best!!
+        return Best4!!
     }
     fun FiveJoin(Data: MutableList<datamodel>, bestFourJoin: Quadruple){
-        val quintuple = mutableListOf<Quintuple>()
         var result = -1
 
         for (i in 0..4){
@@ -550,17 +550,16 @@ class Cost {
                     }
                 }
 
-                var Best:Quintuple?= null
                 var mtemp:Long = 99999999
                 Log.d("Five join finished !",quintuple.size.toString())
                 quintuple.forEach {  // find the best join order
                     Log.d("table","${it.table1} ${it.table2} ${it.table3} ${it.table4} ${it.table5} ${it.JoinResult}")
                     if (mtemp > it.JoinResult){
                         mtemp = it.JoinResult.toLong()
-                        Best = it
+                        Best5 = it
                     }
                 }
-                Log.d("Best Five","${Best!!.table1}  ${Best!!.table2}  ${Best!!.table3}  ${Best!!.table4}  ${Best!!.table5} ${Best!!.JoinResult}")
+                Log.d("Best Five","${Best5!!.table1}  ${Best5!!.table2}  ${Best5!!.table3}  ${Best5!!.table4}  ${Best5!!.table5} ${Best5!!.JoinResult}")
 
 
 

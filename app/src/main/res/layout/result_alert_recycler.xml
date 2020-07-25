@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:padding="12dp"
+    android:orientation="vertical">
+    <TableLayout
+        android:padding="12dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*">
+        <TableRow>
+        <TextView
+            android:gravity="center_horizontal"
+            android:id="@+id/Relation_name_text"
+            android:layout_marginEnd="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Relation"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:gravity="center_horizontal"
+            android:id="@+id/size_text"
+            android:layout_marginEnd="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size"
+            android:layout_marginStart="6dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:gravity="center_horizontal"
+            android:id="@+id/result_cost_text"
+            android:layout_marginEnd="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cost"
+            android:layout_marginStart="6dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:gravity="center_horizontal"
+            android:id="@+id/Best_order_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Best Order"
+            android:layout_marginStart="6dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"/>
+    </TableRow>
+    </TableLayout>
+</LinearLayout>

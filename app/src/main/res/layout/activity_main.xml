@@ -137,7 +137,7 @@
         android:padding="8dp"
         android:textColor="@android:color/white"
         android:id="@+id/button"
-        android:background="@drawable/round_corner_shape"
+        android:background="@drawable/button_round"
         android:layout_gravity="center_horizontal"
         />
 

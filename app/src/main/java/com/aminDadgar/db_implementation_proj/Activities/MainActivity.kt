@@ -2,34 +2,35 @@ package com.aminDadgar.db_implementation_proj.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.aminDadgar.db_implementation_proj.R
 import com.aminDadgar.db_implementation_proj.Utils.Cost
+import com.aminDadgar.db_implementation_proj.Utils.ResultRecyclerAdapter
 import com.aminDadgar.db_implementation_proj.model.datamodel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var listView:ListView
     var TABLE_COUNT = -1
     var TableNames : Array<Char> = arrayOf('R','S','T','U','Z')
-    private var FirstAttribute = -1
-    private var SecondAttribute = -1
-    private var Attr11 = 'a'  //define a char variable
-    private var TupleCount = -1
-    private var Attr12 = 'a'
     var index = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         table_name.text = "Table: "+TableNames[index + 1].toString()
         alertDialog()
+
+
 
         val Data :MutableList<datamodel> = mutableListOf()
 
@@ -41,13 +42,13 @@ class MainActivity : AppCompatActivity() {
 
 
         button.setOnClickListener {
-            val Cost = Cost()
+            val cost = Cost()
 
-            val bestTwoJoin = Cost.twoBytwo(Data)
-            val bestThreeJoin = Cost.threeBythree(Data,bestTwoJoin)
-            val bestFourJoin = Cost.fourJoin(Data,bestThreeJoin)
-            Cost.FiveJoin(Data,bestFourJoin)
-
+            val bestTwoJoin = cost.twoBytwo(Data)
+            val bestThreeJoin = cost.threeBythree(Data,bestTwoJoin)
+            val bestFourJoin = cost.fourJoin(Data,bestThreeJoin)
+            cost.FiveJoin(Data,bestFourJoin)
+            resultAlert(cost)
             val animation = AlphaAnimation(1.0f,0.0f)  //for animating TextView
             animation.repeatMode = Animation.REVERSE
             animation.repeatCount = 1
@@ -104,6 +105,7 @@ class MainActivity : AppCompatActivity() {
                         } */
 //                        else {
                             button.text = "Clculate"
+
 //                            val bestTwoJoin = Cost.twoBytwo(Data)
 //                            val bestThreeJoin = Cost.threeBythree(Data,bestTwoJoin)
 //                            val bestFourJoin = Cost.fourJoin(Data,bestThreeJoin)
@@ -117,9 +119,8 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+
     }
-
-
 
 
 
@@ -146,6 +147,23 @@ class MainActivity : AppCompatActivity() {
             if(!error)
                 alertDialog.cancel()
         }
+    }
+
+    fun resultAlert(Data:Cost){
+        val alertDialog = AlertDialog.Builder(this).create()
+
+        val resultLayout = LayoutInflater.from(this).inflate(R.layout.result_alert,null)
+        alertDialog.setView(resultLayout)
+
+//        val listAdapter = ListViewAdapter(Data,this)
+//        listView = resultLayout.findViewById(R.id.result_ListView)
+//        listView.adapter = listAdapter
+        linearLayoutManager = LinearLayoutManager(this)
+        val recyclerView = resultLayout.findViewById<RecyclerView>(R.id.result_recycler_view)
+        recyclerView.layoutManager = linearLayoutManager
+        recyclerView.adapter = ResultRecyclerAdapter(Data)
+
+        alertDialog.show()
     }
 
     

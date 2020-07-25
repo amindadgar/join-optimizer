@@ -2,4 +2,6 @@
     <string name="app_name">DB Implementation Proj</string>
     <string name="alert_description">this project will calculate the cost of join\nUsing greedy algorithms\nfirst here enter table count and then enter table data in the other screen
     </string>
+    <string name="alert_button_text">Submit</string>
+    <string name="alert_request_text">Please enter table count</string>
 </resources>
