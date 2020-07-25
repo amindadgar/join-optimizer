@@ -129,17 +129,50 @@
 
         </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset"
+            android:padding="8dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@android:color/white"
+            android:id="@+id/reset_button"
+            android:background="@drawable/button_reset"
+            android:layout_gravity="center_horizontal"
+            />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit data"
+        android:layout_marginEnd="16dp"
         android:padding="8dp"
         android:textColor="@android:color/white"
         android:id="@+id/button"
         android:background="@drawable/button_round"
         android:layout_gravity="center_horizontal"
         />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show Result"
+            android:visibility="gone"
+            android:padding="8dp"
+            android:textColor="@android:color/white"
+            android:id="@+id/result_button"
+            android:background="@drawable/button_round"
+            android:layout_gravity="center_horizontal"
+            />
+
+    </LinearLayout>
 
 
 </LinearLayout>

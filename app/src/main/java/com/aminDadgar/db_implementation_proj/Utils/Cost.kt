@@ -3,7 +3,7 @@ package com.aminDadgar.db_implementation_proj.Utils
 import android.util.Log
 import com.aminDadgar.db_implementation_proj.model.*
 
-class Cost {
+class Cost() {
     var Best2 :CoupleData?= null //The best two attribute join
     var Best3:TripleData?= null
     var Best4:Quadruple?= null
@@ -15,16 +15,20 @@ class Cost {
     val quintuple = mutableListOf<Quintuple>()
 
 
-    fun twoBytwo(Data :MutableList<datamodel>): CoupleData {  // this function is used to compare and find tables common attribute
+    fun twoBytwo(Data :MutableList<datamodel>,TABLE_COUNT:Int): CoupleData {  // this function is used to compare and find tables common attribute
 
-        Log.d("function_twoBytwo","started !")
+        Log.d("function_twoBytwo","started ! tableCount:$TABLE_COUNT")
 
         var temp: datamodel?
         var temp2: datamodel?
         var result = -1
-        for (i in 0..4){
+        for (i in 0 until TABLE_COUNT){
+            Log.d("function_twoBytwo","in for loop")
             temp = Data[i]
-            for (j in i+1 ..4){
+
+            for (j in i+1 until TABLE_COUNT){
+                Log.d("function_twoBytwo","in second for loop")
+
                 temp2 = Data[j]
                 if (temp.attr1 == temp2.attr1){
                     if (temp.firstAttribute > temp2.firstAttribute){
@@ -72,8 +76,9 @@ class Cost {
                 }
         }
 
+        Log.d("function_twoBytwo","ended !${coupleData.size}")
+
         Log.d("first","${Best2!!.JoinResult}  ${Best2!!.table1.TABLE_NAME}  ${Best2!!.table2.TABLE_NAME}")
-        Log.d("function_twoBytwo","ended !")
 
         Log.d("Best Two","${Best2!!.table1}  ${Best2!!.table2} ")
 
@@ -83,10 +88,12 @@ class Cost {
 
 
 
-    fun threeBythree(Data :MutableList<datamodel>,BestTwoByTwo:CoupleData):TripleData{
+    fun threeBythree(Data :MutableList<datamodel>,BestTwoByTwo:CoupleData,TABLE_COUNT:Int):TripleData{
         var result = -1
 
-        for (i in 0..4){
+        Log.d("function 3 started","$TABLE_COUNT")
+        for (i in 0  until TABLE_COUNT){
+            Log.d("Function3","in for loop")
             if (BestTwoByTwo.table1.TABLE_NAME != Data[i].TABLE_NAME
                 && BestTwoByTwo.table2.TABLE_NAME != Data[i].TABLE_NAME) {  // check not to join a table to itself
                 for (j in 1..2) {
@@ -231,10 +238,10 @@ class Cost {
 
         return Best3!!
     }
-    fun fourJoin(Data: MutableList<datamodel>, BestThreeJoin: TripleData):Quadruple{
+    fun fourJoin(Data: MutableList<datamodel>, BestThreeJoin: TripleData,TABLE_COUNT:Int):Quadruple{
 
         var result = -1
-        for (i in 0..4){
+        for (i in 0 until TABLE_COUNT){
             if (BestThreeJoin.table1.TABLE_NAME != Data[i].TABLE_NAME &&
                     BestThreeJoin.table2.TABLE_NAME != Data[i].TABLE_NAME &&
                     BestThreeJoin.table3.TABLE_NAME != Data[i].TABLE_NAME){
@@ -392,10 +399,10 @@ class Cost {
 
         return Best4!!
     }
-    fun FiveJoin(Data: MutableList<datamodel>, bestFourJoin: Quadruple){
+    fun FiveJoin(Data: MutableList<datamodel>, bestFourJoin: Quadruple,TABLE_COUNT:Int){
         var result = -1
 
-        for (i in 0..4){
+        for (i in 0 until TABLE_COUNT){
             if (bestFourJoin.table1.TABLE_NAME != Data[i].TABLE_NAME &&
                 bestFourJoin.table2.TABLE_NAME != Data[i].TABLE_NAME &&
                 bestFourJoin.table3.TABLE_NAME != Data[i].TABLE_NAME &&

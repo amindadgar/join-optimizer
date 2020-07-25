@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 
-    class ResultRecyclerAdapter(val Data:Cost):RecyclerView.Adapter<dataHolder>() {
+class ResultRecyclerAdapter(val Data:Cost):RecyclerView.Adapter<dataHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): dataHolder {
