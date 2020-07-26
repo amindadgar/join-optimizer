@@ -21,11 +21,12 @@ import com.aminDadgar.db_implementation_proj.model.Quadruple
 import com.aminDadgar.db_implementation_proj.model.TripleData
 import com.aminDadgar.db_implementation_proj.model.datamodel
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     var TABLE_COUNT = -1
-    var TableNames : Array<Char> = arrayOf('R','S','T','U','Z')
+    var TableNames : MutableList<Char> = mutableListOf<Char>()
     var index = -1
 
     private var Attr11 = 'a'
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private var SecondAttribute = -1
     private var Attr12 = 'a'
     private var TupleCount = -1
+    private var TableName:Char = 'a'
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +42,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        table_name.text = "Table: "+TableNames[index + 1].toString()
         alertDialog()
 
 
@@ -57,7 +58,8 @@ class MainActivity : AppCompatActivity() {
 
 
         reset_button.setOnClickListener {
-            table_name.text = "Table: R"
+            table_name.text = "Enter a char for Table name and for attributes"
+            table_name_text.setText("")
             attr11.setText("")
             attr1.setText("")
             attr2.setText("")
@@ -90,6 +92,7 @@ class MainActivity : AppCompatActivity() {
             var inputError = false
             try {
 
+                TableName = table_name_text.text.toString()[0]
                 Attr11 = attr11.text.toString()[0]
                 FirstAttribute = attr1.text.toString().toInt()
                 SecondAttribute = attr2.text.toString().toInt()
@@ -115,7 +118,7 @@ class MainActivity : AppCompatActivity() {
                     table_name.startAnimation(animation)
                     Data.add(
                         datamodel(
-                            TableNames[index],
+                            TableName,
                             Attr11,
                             FirstAttribute,
                             Attr12,
@@ -123,6 +126,14 @@ class MainActivity : AppCompatActivity() {
                             TupleCount
                         )
                     )
+                    TableNames.add(TableName)
+
+                    table_name_text.setText("")
+                    attr11.setText("")
+                    attr1.setText("")
+                    attr2.setText("")
+                    attr21.setText("")
+                    attr3.setText("")
                 }
             }
 
@@ -132,10 +143,15 @@ class MainActivity : AppCompatActivity() {
                     var bestTwoJoin:CoupleData?=null
                     override fun onAnimationRepeat(animation: Animation?) {
                         if (index < TABLE_COUNT - 1) {
-                                table_name.text = "Table: " + TableNames[index + 1].toString()
-                            Log.d("tablename",TableNames[index + 1].toString())
+                            val stringBuilder = StringBuilder()
+                            for (name in TableNames) stringBuilder.append("$name,")
+                            table_name.text = "$stringBuilder  :tables are added \nPlease enter the next table data "
+                            Log.d("tablename",TableName.toString())
                         }
                         else {
+                            val stringBuilder = StringBuilder()
+                            for (name in TableNames) stringBuilder.append("$name,")
+                            table_name.text = "$stringBuilder tables are added\nResults can be seen via result button"
                             button.text = "Calculate"
                             if (TABLE_COUNT <=2){
                                 bestTwoJoin = cost.twoBytwo(Data,TABLE_COUNT)
@@ -196,11 +212,23 @@ class MainActivity : AppCompatActivity() {
                 if (TABLE_COUNT > 5){
                     val layout = layoutInflater.inflate(R.layout.custom_toast,findViewById<ViewGroup>(R.id.toast_layout_root))
                     val textview = layout.findViewById<TextView>(R.id.toast_text)
-                    textview.text = "6 table join is not supported\nfive table joins is being used instead!"
+                    textview.text = "more than 5 table join is not supported\nTry entering right numbers!"
                     val toast = Toast(this)
                     toast.view = layout
                     toast.duration = Toast.LENGTH_LONG
                     toast.show()
+                    error = true
+
+                }else if(TABLE_COUNT < 2){
+                    val layout = layoutInflater.inflate(R.layout.custom_toast,findViewById<ViewGroup>(R.id.toast_layout_root))
+                    val textview = layout.findViewById<TextView>(R.id.toast_text)
+                    textview.text = "less than 2 table join is not supported\nTry entering right numbers!"
+                    val toast = Toast(this)
+                    toast.view = layout
+                    toast.duration = Toast.LENGTH_LONG
+                    toast.show()
+                    error = true
+
                 }
             }catch (ex:Exception){
                 error = true
