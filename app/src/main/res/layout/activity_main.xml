@@ -164,7 +164,7 @@
         android:layout_marginEnd="16dp"
         android:padding="8dp"
         android:textColor="@android:color/white"
-        android:id="@+id/button"
+        android:id="@+id/submit_button"
         android:background="@drawable/button_round"
         android:layout_gravity="center_horizontal"
         />

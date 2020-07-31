@@ -28,44 +28,44 @@ class dataHolder(inflater: LayoutInflater, parent: ViewGroup):
 
     @SuppressLint("SetTextI18n")
     fun bind(datamodel: CoupleData, best: CoupleData){
-        Relations!!.text = "${datamodel.table1.TABLE_NAME},${datamodel.table2.TABLE_NAME}"
+        Relations!!.text = "${datamodel.table1.TABLE_NAME}⨝${datamodel.table2.TABLE_NAME}"
         size!!.text = "0"
         cost!!.text = "${datamodel.JoinResult}"
-        bestOrder!!.text = "${best.table1.TABLE_NAME},${best.table2.TABLE_NAME}"
+        bestOrder!!.text = "${best.table1.TABLE_NAME}⨝${best.table2.TABLE_NAME}"
     }
     @SuppressLint("SetTextI18n")
     fun bind(datamodel: TripleData, best3: TripleData, best2: CoupleData){
-        Relations!!.text = "${datamodel.table1.TABLE_NAME},${datamodel.table2.TABLE_NAME},${datamodel.table3.TABLE_NAME}"
+        Relations!!.text = "${datamodel.table1.TABLE_NAME}⨝${datamodel.table2.TABLE_NAME}⨝${datamodel.table3.TABLE_NAME}"
         size!!.text = "${best2.JoinResult}"
         cost!!.text = "${datamodel.JoinResult}"
-        bestOrder!!.text = "${best3.table1.TABLE_NAME},${best3.table2.TABLE_NAME},${best3.table3.TABLE_NAME}"
+        bestOrder!!.text = "${best3.table1.TABLE_NAME}⨝${best3.table2.TABLE_NAME}⨝${best3.table3.TABLE_NAME}"
     }
     @SuppressLint("SetTextI18n")
     fun bind(datamodel: Quadruple, best4: Quadruple, best3: TripleData){
 
-        Relations!!.text = "${datamodel.table1.TABLE_NAME}," +
+        Relations!!.text = "${datamodel.table1.TABLE_NAME}⨝" +
                 "${datamodel.table2.TABLE_NAME}" +
-                ",${datamodel.table3.TABLE_NAME},${datamodel.table4.TABLE_NAME}"
+                "⨝${datamodel.table3.TABLE_NAME}⨝${datamodel.table4.TABLE_NAME}"
 
         size!!.text = "${best3.JoinResult}"
         cost!!.text = "${datamodel.JoinResult}"
 
-        bestOrder!!.text = "${best4.table1.TABLE_NAME},${best4.table2.TABLE_NAME}" +
-                ",${best4.table3.TABLE_NAME},${best4.table4.TABLE_NAME}"
+        bestOrder!!.text = "${best4.table1.TABLE_NAME}⨝${best4.table2.TABLE_NAME}" +
+                "⨝${best4.table3.TABLE_NAME}⨝${best4.table4.TABLE_NAME}"
     }
     @SuppressLint("SetTextI18n")
     fun bind(datamodel: Quintuple, best5: Quintuple, best4: Quadruple){
-        Relations!!.text = "${datamodel.table1.TABLE_NAME}," +
+        Relations!!.text = "${datamodel.table1.TABLE_NAME}⨝" +
                 "${datamodel.table2.TABLE_NAME}" +
-                ",${datamodel.table3.TABLE_NAME}" +
-                ",${datamodel.table4.TABLE_NAME}" +
-                ",${datamodel.table5.TABLE_NAME}"
+                "⨝${datamodel.table3.TABLE_NAME}" +
+                "⨝${datamodel.table4.TABLE_NAME}" +
+                "⨝${datamodel.table5.TABLE_NAME}"
 
         size!!.text = "${best4.JoinResult}"
         cost!!.text = "${datamodel.JoinResult}"
 
-        bestOrder!!.text = "${best5.table1.TABLE_NAME},${best5.table2.TABLE_NAME}," +
-                "${best5.table3.TABLE_NAME},${best5.table4.TABLE_NAME},${best5.table5.TABLE_NAME}"
+        bestOrder!!.text = "${best5.table1.TABLE_NAME}⨝${best5.table2.TABLE_NAME}⨝" +
+                "${best5.table3.TABLE_NAME}⨝${best5.table4.TABLE_NAME}⨝${best5.table5.TABLE_NAME}"
     }
 
 

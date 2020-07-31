@@ -3,7 +3,6 @@ package com.aminDadgar.db_implementation_proj.Activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +26,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     var TABLE_COUNT = -1
     var TableNames : MutableList<Char> = mutableListOf<Char>()
-    var index = -1
+    var index = 0
+
 
     private var Attr11 = 'a'
     private var FirstAttribute = -1
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         alertDialog()
 
 
-        val cost = Cost()
+        var cost = Cost()
 
         val Data :MutableList<datamodel> = mutableListOf()
 
@@ -65,10 +65,14 @@ class MainActivity : AppCompatActivity() {
             attr2.setText("")
             attr21.setText("")
             attr3.setText("")
+            cost = Cost()
+
+            TableNames.removeAll(TableNames)
 
             result_button.visibility = View.GONE
             alertDialog()
-            index = -1
+            index = 0
+
 
             val layout = layoutInflater.inflate(R.layout.custom_toast,findViewById<ViewGroup>(R.id.toast_layout_root))
             val textview = layout.findViewById<TextView>(R.id.toast_text)
@@ -79,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             toast.show()
         }
 
-        button.setOnClickListener {
+        submit_button.setOnClickListener {
 
 
             val animation = AlphaAnimation(1.0f,0.0f)  //for animating TextView
@@ -114,6 +118,8 @@ class MainActivity : AppCompatActivity() {
             if (!inputError) {
 
                 if (index < TABLE_COUNT) {
+                    Log.d("INDEX",index.toString())
+
                     index++
                     table_name.startAnimation(animation)
                     Data.add(
@@ -142,17 +148,17 @@ class MainActivity : AppCompatActivity() {
                     var bestFourJoin:Quadruple?=null
                     var bestTwoJoin:CoupleData?=null
                     override fun onAnimationRepeat(animation: Animation?) {
-                        if (index < TABLE_COUNT - 1) {
+                        if (index < TABLE_COUNT ) {
                             val stringBuilder = StringBuilder()
-                            for (name in TableNames) stringBuilder.append("$name,")
+                            for (name in TableNames) stringBuilder.append("$name ")
                             table_name.text = "$stringBuilder  :tables are added \nPlease enter the next table data "
                             Log.d("tablename",TableName.toString())
                         }
                         else {
                             val stringBuilder = StringBuilder()
-                            for (name in TableNames) stringBuilder.append("$name,")
+                            for (name in TableNames) stringBuilder.append("$name ")
                             table_name.text = "$stringBuilder tables are added\nResults can be seen via result button"
-                            button.text = "Calculate"
+                            submit_button.text = "Calculate"
                             if (TABLE_COUNT <=2){
                                 bestTwoJoin = cost.twoBytwo(Data,TABLE_COUNT)
                             }else if (TABLE_COUNT <= 3){

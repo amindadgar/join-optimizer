@@ -234,7 +234,7 @@ class Cost() {
             }
         }
 
-        Log.d("Best Three","${Best3!!.table1}  ${Best3!!.table2}  ${Best3!!.table3} ")
+//        Log.d("Best Three","${Best3!!.table1}  ${Best3!!.table2}  ${Best3!!.table3} ")
 
         return Best3!!
     }
